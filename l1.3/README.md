@@ -27,10 +27,10 @@ Worker 2 got job 3
 
 ```bash
 go build -o workers
-./workers -n 8
+./workers -n 8 -t 100
 ```
 ### Для Windows
 ```powershell
 go build -o workers.exe
-.\workers.exe -n 8
+.\workers.exe -n 8 -t 100
 ```

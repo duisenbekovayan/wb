@@ -15,6 +15,7 @@ func worker(id int, jobs <-chan int) {
 func main() {
 	// Параметр количества worker-ov
 	n := flag.Int("n", 3, "number of workers")
+	tasks := flag.Int("t", 10, "number of tasks")
 	flag.Parse()
 
 	jobs := make(chan int)
@@ -25,10 +26,9 @@ func main() {
 	}
 
 	// пишем в канал
-	jobID := 1
-	for {
+	for jobID := 1; jobID <= *tasks; jobID++ {
 		jobs <- jobID
-		jobID++
 		time.Sleep(500 * time.Millisecond) // типа делаем работу
 	}
+	close(jobs)
 }
